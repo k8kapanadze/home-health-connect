@@ -6,38 +6,38 @@
 
 @layer base {
   :root {
-    --background: 210 25% 97%;
-    --foreground: 215 35% 15%;
+    --background: 200 20% 97%;
+    --foreground: 210 40% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 35% 15%;
+    --card-foreground: 210 40% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 35% 15%;
+    --popover-foreground: 210 40% 12%;
 
-    --primary: 210 65% 32%;
+    --primary: 205 70% 28%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 20% 95%;
-    --secondary-foreground: 215 35% 15%;
+    --secondary: 200 18% 94%;
+    --secondary-foreground: 210 40% 12%;
 
-    --muted: 210 15% 93%;
-    --muted-foreground: 215 12% 50%;
+    --muted: 200 12% 92%;
+    --muted-foreground: 210 10% 45%;
 
-    --accent: 195 50% 42%;
+    --accent: 180 42% 38%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 210 18% 88%;
-    --input: 210 18% 88%;
-    --ring: 210 65% 32%;
+    --border: 200 16% 88%;
+    --input: 200 16% 88%;
+    --ring: 205 70% 28%;
 
     --radius: 0.5rem;
 
-    --hero-gradient: linear-gradient(135deg, hsl(210 65% 32%), hsl(195 50% 42%));
-    --section-gradient: linear-gradient(180deg, hsl(210 25% 97%), hsl(210 15% 93%));
+    --hero-gradient: linear-gradient(135deg, hsl(205 70% 28%), hsl(180 42% 38%));
+    --section-gradient: linear-gradient(180deg, hsl(200 20% 97%), hsl(200 12% 92%));
     --glass: 0 0% 100% / 0.85;
 
     --sidebar-background: 0 0% 98%;
@@ -66,6 +66,6 @@
     @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-24;
   }
   .glass-card {
-    @apply bg-card/85 backdrop-blur-md border border-border/50 rounded-xl shadow-lg;
+    @apply bg-card/90 backdrop-blur-md border border-border/40 rounded-2xl shadow-md;
   }
 }
