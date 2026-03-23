@@ -1,24 +1,24 @@
 import { motion } from "framer-motion";
-import { MousePointerClick, PhoneCall, HeartPulse } from "lucide-react";
+import { PhoneCall, ClipboardCheck, HeartPulse } from "lucide-react";
 
 const steps = [
   {
-    icon: MousePointerClick,
+    icon: PhoneCall,
     num: "01",
-    title: "იდენტიფიკაცია",
-    text: "ირჩევთ სასურველ პროცედურას და დროს.",
+    title: "რეზერვირება",
+    text: "სატელეფონო კავშირის მეშვეობით ირჩევთ საჭირო პროცედურას და თქვენთვის სასურველ დროს.",
   },
   {
-    icon: PhoneCall,
+    icon: ClipboardCheck,
     num: "02",
     title: "ვერიფიკაცია",
-    text: "სპეციალისტი გიკავშირდებათ კლინიკური დეტალების დასაზუსტებლად.",
+    text: "ჩვენი სპეციალისტი ახდენს სამედიცინო დანიშნულების გადამოწმებას და დეტალების დაზუსტებას.",
   },
   {
     icon: HeartPulse,
     num: "03",
     title: "ინტერვენცია",
-    text: "იღებთ პროფესიულ დახმარებას სახლიდან გაუსვლელად.",
+    text: "პერსონალიზებული სამედიცინო დახმარების გაწევა დათქმულ ვადებში, უსაფრთხოების სტანდარტების სრული დაცვით.",
   },
 ];
 
@@ -36,7 +36,6 @@ const StepsSection = () => {
         </motion.h2>
 
         <div className="relative flex flex-col md:flex-row gap-8 md:gap-0 items-start">
-          {/* Connector line */}
           <div className="hidden md:block absolute top-10 left-[16.66%] right-[16.66%] h-px bg-border" />
 
           {steps.map((s, i) => (
@@ -53,7 +52,7 @@ const StepsSection = () => {
               </div>
               <span className="text-xs font-bold text-primary tracking-widest">{s.num}</span>
               <h3 className="text-base font-semibold text-foreground mt-1 mb-2">{s.title}</h3>
-              <p className="text-sm text-muted-foreground max-w-[240px] mx-auto">{s.text}</p>
+              <p className="text-sm text-muted-foreground max-w-[260px] mx-auto">{s.text}</p>
             </motion.div>
           ))}
         </div>
