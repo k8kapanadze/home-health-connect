@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import doctorsConsulting from "@/assets/doctors-consulting.gif";
+import heroPhone from "@/assets/hero-phone.gif";
 import doctorPatient from "@/assets/doctor-patient.gif";
 
 const SafetySection = () => {
@@ -66,9 +66,9 @@ const SafetySection = () => {
             className="order-1 md:order-2 flex justify-center"
           >
             <img
-              src={doctorPatient}
-              alt="კონსულტაცია პაციენტთან"
-              className="w-full max-w-sm"
+              src={heroPhone}
+              alt="კონსულტაცია"
+              className="w-full max-w-xs"
             />
           </motion.div>
         </div>

@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const stages = [
   {
@@ -20,7 +21,11 @@ const stages = [
 ];
 
 const ProtocolSection = () => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState<number | null>(0);
+
+  const toggle = (i: number) => {
+    setActive(active === i ? null : i);
+  };
 
   return (
     <section className="section-padding bg-muted/50">
@@ -34,8 +39,55 @@ const ProtocolSection = () => {
           კლინიკური პროტოკოლის დინამიკა
         </motion.h2>
 
-        <div className="grid md:grid-cols-[240px_1fr] gap-6">
-          <div className="flex md:flex-col gap-3">
+        {/* Mobile: Accordion */}
+        <div className="md:hidden space-y-3">
+          {stages.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="glass-card overflow-hidden"
+            >
+              <button
+                onClick={() => toggle(i)}
+                className="w-full flex items-center justify-between px-5 py-4 text-left"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center shrink-0">
+                    {s.num}
+                  </span>
+                  <span className="text-sm font-semibold text-foreground">{s.title}</span>
+                </div>
+                <ChevronDown
+                  className={`w-4 h-4 text-muted-foreground transition-transform ${
+                    active === i ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              <AnimatePresence>
+                {active === i && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
+                      {s.text}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop: Tabs */}
+        <div className="hidden md:grid md:grid-cols-[240px_1fr] gap-6">
+          <div className="flex flex-col gap-3">
             {stages.map((s, i) => (
               <button
                 key={i}
@@ -59,10 +111,14 @@ const ProtocolSection = () => {
             transition={{ duration: 0.3 }}
             className="glass-card p-8"
           >
-            <h3 className="text-lg font-semibold text-foreground mb-2">
-              ეტაპი {stages[active].num}: {stages[active].title}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">{stages[active].text}</p>
+            {active !== null && (
+              <>
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  ეტაპი {stages[active].num}: {stages[active].title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{stages[active].text}</p>
+              </>
+            )}
           </motion.div>
         </div>
       </div>
