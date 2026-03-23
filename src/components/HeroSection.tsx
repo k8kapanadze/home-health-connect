@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroPhone from "@/assets/hero-phone.gif";
+import doctorsConsulting from "@/assets/doctors-consulting.gif";
 
 const HeroSection = () => {
   const scrollToServices = () => {
@@ -40,7 +40,7 @@ const HeroSection = () => {
             className="flex justify-center"
           >
             <img
-              src={heroPhone}
+              src={doctorsConsulting}
               alt="HOMEDIC - სამედიცინო მომსახურება"
               className="w-full max-w-md"
             />
