@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import homedicPhone from "@/assets/homedic-phone.png";
+import heroPhone from "@/assets/hero-phone.gif";
 
 const HeroSection = () => {
   const scrollToServices = () => {
@@ -16,10 +16,10 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block mb-6 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-white/15 text-white/90 border border-white/20">
+            <span className="inline-block mb-6 px-5 py-2 rounded-full text-sm font-bold tracking-widest uppercase bg-white/20 text-white border border-white/30 shadow-lg">
               ექთნები ბინაზე გამოძახებით
             </span>
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug text-primary-foreground mb-6">
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold leading-snug text-primary-foreground mb-6">
               კლინიკური უსაფრთხოება და პერსონალიზებული ზრუნვა თქვენს გარემოში.
             </h1>
             <p className="text-sm sm:text-base text-primary-foreground/80 max-w-xl mb-10 leading-relaxed">
@@ -40,9 +40,9 @@ const HeroSection = () => {
             className="flex justify-center"
           >
             <img
-              src={homedicPhone}
+              src={heroPhone}
               alt="HOMEDIC - სამედიცინო მომსახურება"
-              className="w-full max-w-sm rounded-2xl shadow-2xl"
+              className="w-full max-w-md"
             />
           </motion.div>
         </div>

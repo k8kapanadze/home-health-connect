@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import consultationImg from "@/assets/consultation.gif";
-import sterileImg from "@/assets/sterile-package.jpg";
+import doctorsConsulting from "@/assets/doctors-consulting.gif";
+import doctorPatient from "@/assets/doctor-patient.gif";
 
 const SafetySection = () => {
   return (
     <section className="section-padding overflow-hidden">
       <div className="container mx-auto max-w-5xl">
+        {/* Safety video + text */}
         <div className="grid md:grid-cols-2 gap-10 items-center mb-20">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -14,9 +15,12 @@ const SafetySection = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={sterileImg}
-                alt="სტერილური პაკეტის გახსნა"
+              <video
+                src="/sterile-video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-[320px] object-cover"
               />
             </div>
@@ -31,11 +35,8 @@ const SafetySection = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
               უსაფრთხოების სტანდარტი
             </h2>
-            <p className="text-lg text-primary font-medium mb-3">
-              „ჩვენი უსაფრთხოების სტანდარტი - იხსნება მხოლოდ თქვენს თვალწინ"
-            </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              ყველა სამედიცინო მასალა და ინსტრუმენტი იხსნება პაციენტის თანდასწრებით. სტერილობის დაცვა არ არის ფორმალობა - ეს ჩვენი კლინიკური ვალდებულებაა.
+              ნდობა, რომელიც ეფუძნება ფაქტებს - ყოველი ინვაზიური ინსტრუმენტის პირველადი გახსნა თქვენი თანდასწრებით სრულდება. ეს არის ჩვენი პროფესიული პასუხისმგებლობა და თქვენი სიმშვიდის გარანტია.
             </p>
           </motion.div>
         </div>
@@ -52,9 +53,6 @@ const SafetySection = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
               პროფესიული კონსულტაცია
             </h2>
-            <p className="text-lg text-primary font-medium mb-3">
-              „პაციენტთან კომუნიკაცია - მკურნალობის პირველი ეტაპი"
-            </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
               ყოველი ვიზიტის წინ სპეციალისტი დეტალურად გიკავშირდებათ, ამოწმებს კლინიკურ მონაცემებს და ადგენს ინდივიდუალურ გეგმას.
             </p>
@@ -68,7 +66,7 @@ const SafetySection = () => {
             className="order-1 md:order-2 flex justify-center"
           >
             <img
-              src={consultationImg}
+              src={doctorPatient}
               alt="კონსულტაცია პაციენტთან"
               className="w-full max-w-sm"
             />
