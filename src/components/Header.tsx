@@ -1,5 +1,5 @@
 import { Phone } from "lucide-react";
-import stethoscopeLogo from "@/assets/stethoscope-logo.png";
+import ecgLogo from "@/assets/ecg-logo.png";
 
 const Header = () => {
   return (
