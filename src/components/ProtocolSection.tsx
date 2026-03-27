@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, CheckCircle2 } from "lucide-react";
 
 const stages = [
   {
@@ -28,16 +28,24 @@ const ProtocolSection = () => {
   };
 
   return (
-    <section className="section-padding bg-muted/50">
-      <div className="container mx-auto max-w-5xl">
-        <motion.h2
+    <section className="section-padding relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/60 via-muted/30 to-background" />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-primary/3 blur-3xl" />
+
+      <div className="container mx-auto max-w-5xl relative z-10">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl font-bold text-center text-foreground mb-14"
+          className="text-center mb-14"
         >
-          კლინიკური პროტოკოლის დინამიკა
-        </motion.h2>
+          <span className="inline-block mb-3 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary border border-primary/15">
+            პროტოკოლი
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+            კლინიკური პროტოკოლის დინამიკა
+          </h2>
+        </motion.div>
 
         {/* Mobile: Accordion */}
         <div className="md:hidden space-y-3">
@@ -55,16 +63,17 @@ const ProtocolSection = () => {
                 className="w-full flex items-center justify-between px-5 py-4 text-left"
               >
                 <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center shrink-0">
+                  <span className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-accent text-primary-foreground text-xs font-bold flex items-center justify-center shrink-0 shadow-sm">
                     {s.num}
                   </span>
                   <span className="text-sm font-semibold text-foreground">{s.title}</span>
                 </div>
-                <ChevronDown
-                  className={`w-4 h-4 text-muted-foreground transition-transform ${
-                    active === i ? "rotate-180" : ""
-                  }`}
-                />
+                <motion.div
+                  animate={{ rotate: active === i ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                </motion.div>
               </button>
               <AnimatePresence>
                 {active === i && (
@@ -85,41 +94,66 @@ const ProtocolSection = () => {
           ))}
         </div>
 
-        {/* Desktop: Tabs */}
-        <div className="hidden md:grid md:grid-cols-[240px_1fr] gap-6">
-          <div className="flex flex-col gap-3">
+        {/* Desktop: Interactive steps */}
+        <div className="hidden md:block">
+          {/* Step indicators */}
+          <div className="flex items-center justify-center gap-0 mb-10">
             {stages.map((s, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                className={`text-left px-5 py-4 rounded-lg text-sm font-medium transition-all ${
-                  active === i
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "bg-card text-muted-foreground hover:bg-card/80 border border-border/50"
-                }`}
-              >
-                ეტაპი {s.num}
-                <span className="block text-xs mt-0.5 opacity-80">{s.title}</span>
-              </button>
+              <div key={i} className="flex items-center">
+                <motion.button
+                  onClick={() => setActive(i)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex items-center gap-3 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                    active === i
+                      ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-lg shadow-primary/25"
+                      : "bg-card text-muted-foreground hover:bg-muted border border-border/50"
+                  }`}
+                >
+                  {active === i ? (
+                    <CheckCircle2 className="w-4 h-4" />
+                  ) : (
+                    <span className="w-5 h-5 rounded-full border-2 border-current flex items-center justify-center text-[10px] font-bold">
+                      {s.num}
+                    </span>
+                  )}
+                  {s.title}
+                </motion.button>
+                {i < stages.length - 1 && (
+                  <div className="w-8 h-px bg-border mx-2" />
+                )}
+              </div>
             ))}
           </div>
 
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-            className="glass-card p-8"
-          >
+          {/* Content */}
+          <AnimatePresence mode="wait">
             {active !== null && (
-              <>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  ეტაპი {stages[active].num}: {stages[active].title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{stages[active].text}</p>
-              </>
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35 }}
+                className="glass-card p-10 relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent" />
+                <div className="flex items-start gap-5">
+                  <span className="text-5xl font-bold text-primary/10 leading-none shrink-0">
+                    {stages[active].num}
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-semibold text-foreground mb-3">
+                      {stages[active].title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
+                      {stages[active].text}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             )}
-          </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
