@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Syringe, Droplets, Bandage, CircleDot } from "lucide-react";
+import { Syringe, Droplets, Bandage, CircleDot, Ratio } from "lucide-react";
 
 const services = [
   {
@@ -26,6 +26,12 @@ const services = [
     text: "შარდის ბუშტის კათეტერის დაყენება, შეცვლა ან მოხსნა მაქსიმალური სიფრთხილითა და ჰიგიენური ნორმების დაცვით.",
     gradient: "from-accent/10 to-primary/5",
   },
+  {
+    icon: Ratio,
+    title: "ზონდის ჩადგმა",
+    text: "ნაზოგასტრალური ზონდის ჩადგმა და მართვა კლინიკური სტანდარტების დაცვით, პაციენტის კომფორტის მაქსიმალური გათვალისწინებით.",
+    gradient: "from-primary/10 to-accent/5",
+  },
 ];
 
 const ServicesSection = () => {
@@ -48,30 +54,36 @@ const ServicesSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.5 }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="glass-card p-7 flex gap-5 hover:shadow-xl transition-all group relative overflow-hidden cursor-default"
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
+              className="glass-card p-6 sm:p-7 flex flex-col gap-4 hover:shadow-2xl transition-all group relative overflow-hidden cursor-default border border-border/50 hover:border-primary/30"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${s.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-              <div className="relative z-10 flex gap-5 w-full">
+              <div className="relative z-10 flex flex-col gap-4 w-full">
                 <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center group-hover:shadow-md transition-shadow"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-14 h-14 shrink-0 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center group-hover:shadow-lg transition-all duration-300 border border-primary/10"
                 >
-                  <s.icon className="w-6 h-6 text-primary" />
+                  <s.icon className="w-7 h-7 text-primary" />
                 </motion.div>
                 <div>
-                  <h3 className="text-base font-semibold text-foreground mb-2">{s.title}</h3>
+                  <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">{s.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{s.text}</p>
                 </div>
               </div>
+              <motion.div
+                className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent origin-left"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+              />
             </motion.div>
           ))}
         </div>
